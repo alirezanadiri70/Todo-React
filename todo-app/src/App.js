@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import Header from "./components/Header";
 import CreateNote from "./components/CreateNote";
 import Note from "./components/Note";
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -13,9 +14,8 @@ function App() {
       <CreateNote />
       <NoteHolder>
         <Note />
-        <Note />
-        <Note />
       </NoteHolder>
+      <Footer/>
     </div>
   );
 }

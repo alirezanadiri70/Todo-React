@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 function CreateNote() {
+  const [note, setNote] = useState({
+    title: "",
+    content: ""
+  });
+
+  
+
   return (
     <Note>
-      <input type="text" placeholder="Title" />
-      <textarea type="text"placeholder="Your Note ..." row="6"/>
+      <input
+        onChange={handleChange}
+        value={note.title}
+        name="title"
+        type="text"
+        placeholder="Title"
+      />
+      <textarea
+        onChange={handleChange}
+        value={note.content}
+        name="content"
+        type="text"
+        placeholder="Your Note ..."
+        row="6"
+      />
       <button>Add</button>
     </Note>
   );
@@ -15,8 +35,8 @@ const Note = styled.div`
   // height: 300px;
   color: black;
   display: flex;
-  flex-direction:column;
-  box-shadow: 0px 10px 20px 10px #CFD8DC;
+  flex-direction: column;
+  box-shadow: 0px 10px 20px 10px #cfd8dc;
   position: relative;
   left: 550px;
   top: 30px;
@@ -28,17 +48,18 @@ const Note = styled.div`
     border: none;
     padding: 5px 0px 10px 10px;
     outline: none;
-    font-size: 1.5em;
+    font-size: 1.2em;
     resize: none;
-    font-family: "Pacifico";
+    font-family: "Simonetta";
   }
   textarea[type="text"] {
-    width:99%;
-    font-family: "Pacifico";
-    border :none;
-    outline:none;
-    font-size:1em;
-    height: 50px
+    width: 99%;
+    font-family: "Simonetta";
+    border: none;
+    outline: none;
+    font-size: 1.2em;
+    height: 50px;
+    padding: 5px 0px 10px 10px;
   }
   button {
     border: none;
@@ -48,10 +69,9 @@ const Note = styled.div`
     height: 60px;
     position: relative;
     left: 500px;
-    top:30px;
+    top: 30px;
     background-color: #f5ba13;
     color: #fff;
-
   }
 `;
 
