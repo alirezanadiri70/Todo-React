@@ -2,11 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 
 function Note(props) {
+
+  function handleDelete(){
+    props.onDelete(props.id)
+  }
+
   return (
     <Notes>
       <p>{props.title}</p>
       <p>{props.content}</p>
-      <button>Delete</button>
+      <button onClick={handleDelete}>Delete</button>
     </Notes>
   )
 }

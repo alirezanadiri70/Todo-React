@@ -1,12 +1,32 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-function CreateNote() {
+function CreateNote(props) {
   const [note, setNote] = useState({
     title: "",
     content: ""
   });
 
+  function handleChange(event){
+    const {name, value} = event.target
+    setNote(prevNote => {
+      return {
+        ...prevNote,
+        [name] : value
+      }
+    })
+  }
+
+  function handleSubmit(event) {
+   event.preventDefault()
+   props.onAdd(note) 
+   setNote({
+     title: "",
+     content: ""
+   })
   
+  }
+
+
 
   return (
     <Note>
@@ -25,7 +45,7 @@ function CreateNote() {
         placeholder="Your Note ..."
         row="6"
       />
-      <button>Add</button>
+      <button onClick={handleSubmit}>Add</button>
     </Note>
   );
 }
@@ -72,6 +92,9 @@ const Note = styled.div`
     top: 30px;
     background-color: #f5ba13;
     color: #fff;
+  }
+  button:focus {
+    outline: 0
   }
 `;
 

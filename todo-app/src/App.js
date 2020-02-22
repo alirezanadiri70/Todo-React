@@ -1,29 +1,58 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useState } from "react";
 import "./App.css";
-import styled from 'styled-components'
+import styled from "styled-components";
 import Header from "./components/Header";
 import CreateNote from "./components/CreateNote";
 import Note from "./components/Note";
-import Footer from './components/Footer'
+import Footer from "./components/Footer";
 
 function App() {
+  const [notes, setNotes] = useState([]);
+
+  function addNote(newNote) {
+    setNotes(prevNotes => {
+      if(newNote.content && newNote.title !== "" ){
+        return [...prevNotes, newNote];
+      }else {
+        alert("nothing added")
+      }
+    });
+  }
+
+  function deleteNote(id) {
+    setNotes(prevNotes => {
+      return prevNotes.filter((item, index) => {
+        return index !== id;
+      });
+    });
+  }
+
   return (
     <div>
       <Header />
-      <CreateNote />
+      <CreateNote onAdd={addNote} />
       <NoteHolder>
-        <Note />
+        {notes.map((noteItem, index) => {
+          return (
+            <Note
+              key={index}
+              id={index}
+              content={noteItem.content}
+              title={noteItem.title}
+              onDelete={deleteNote}
+            />
+          );
+        })}
       </NoteHolder>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
 
 const NoteHolder = styled.div`
-display: flex;
-justify-content:flex-start;
-padding-top: 80px
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 80px;
 `;
 
 export default App;
