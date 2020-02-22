@@ -11,11 +11,10 @@ function App() {
 
   function addNote(newNote) {
     setNotes(prevNotes => {
-      if(newNote.content && newNote.title !== "" ){
-        return [...prevNotes, newNote];
-      }else {
-        alert("nothing added")
+      if (newNote.title && newNote.content) {
+        return [...prevNotes, newNote]
       }
+      return prevNotes
     });
   }
 
@@ -32,17 +31,15 @@ function App() {
       <Header />
       <CreateNote onAdd={addNote} />
       <NoteHolder>
-        {notes.map((noteItem, index) => {
-          return (
-            <Note
-              key={index}
-              id={index}
-              content={noteItem.content}
-              title={noteItem.title}
-              onDelete={deleteNote}
-            />
-          );
-        })}
+        {notes.map((noteItem, index) => (
+          <Note
+            key={index}
+            id={index}
+            content={noteItem.content}
+            title={noteItem.title}
+            onDelete={deleteNote}
+          />
+        ))}
       </NoteHolder>
       <Footer />
     </div>
