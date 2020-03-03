@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+
+
 function CreateNote(props) {
   const [note, setNote] = useState({
     title: "",
